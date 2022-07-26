@@ -45,7 +45,7 @@ class Welcome(discord.ui.View):
     #         await interaction.response.send_message("You haven't read the rules yet.", ephemeral=True)    
     #         return False
     #     return True
-    @discord.ui.button(label="Click here to start!", style=discord.ButtonStyle.green)
+    @discord.ui.button(label="Click here to start!", style=discord.ButtonStyle.green, custom_id="welcome_button")
     async def callback(self, interaction: discord.Interaction, button: discord.Button):
         user = interaction.user
         role = interaction.guild.get_role(987553778662268928)
@@ -62,6 +62,7 @@ class Pronouns(discord.ui.View):
     @discord.ui.select(
         max_values=1,
         placeholder='Make selection',
+        custom_id="pronoun_select",
         options=[
             discord.SelectOption(label='They/Them'),
             discord.SelectOption(label='She/Her'),
@@ -115,6 +116,7 @@ class Pronons(discord.ui.View):
     @discord.ui.select(
         max_values=1,
         placeholder='Make selection',
+        custom_id="pronon_select",
         options=[
             discord.SelectOption(label='They/Them'),
             discord.SelectOption(label='She/Her'),
@@ -199,6 +201,7 @@ class GenreChoose(discord.ui.View):
         super().__init__(timeout=None)
     @discord.ui.select(
         placeholder='Make a selection',
+        custom_id='genre_select',
         options=[
             discord.SelectOption(label='Alternative Rock'),
             discord.SelectOption(label='Bluegrass'),
@@ -363,6 +366,7 @@ class GenreChoose2(discord.ui.View):
         super().__init__(timeout=None)
     @discord.ui.select(
         placeholder='Make a selection',
+        custom_id='genre2_select',
         options=[
             discord.SelectOption(label='Metal'),
             discord.SelectOption(label='Modern Country'),
@@ -479,6 +483,7 @@ class GenreChooseV2(discord.ui.View):
         super().__init__(timeout=None)
     @discord.ui.select(
         placeholder='Make a selection',
+        custom_id='genre_select_v2',
         options=[
             discord.SelectOption(label='Alternative Rock'),
             discord.SelectOption(label='Bluegrass'),
@@ -766,6 +771,7 @@ class GenreChooseV3(discord.ui.View):
         super().__init__(timeout=None)
     @discord.ui.select(
         placeholder='Make a selection',
+        custom_id='genre_select_v3',
         options=[
             discord.SelectOption(label='Metal'),
             discord.SelectOption(label='Modern Country'),
@@ -965,6 +971,7 @@ class LastMSG(discord.ui.View):
         super().__init__(timeout=None)
     @discord.ui.select(
         placeholder = 'Make a selection',
+        custom_id='last_select',
         options = [
             discord.SelectOption(label='Producer', value = 989040398766850099),
             discord.SelectOption(label='Audiophile', value = 989040473463193600)
@@ -983,6 +990,7 @@ class LastMSGV2(discord.ui.View):
         super().__init__(timeout=None)
     @discord.ui.select(
         placeholder = 'Make a selection',
+        custom_id='last_select_v2',
         options = [
             discord.SelectOption(label='Producer'),
             discord.SelectOption(label='Audiophile')
@@ -1014,7 +1022,7 @@ class LastMSGV2(discord.ui.View):
 class DoneButton(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
-    @discord.ui.button(label="Click once you've assigned your roles!", style = discord.ButtonStyle.green)
+    @discord.ui.button(label="Click once you've assigned your roles!", style = discord.ButtonStyle.green, custom_id='done_button')
     async def on_callback(self, interaction: discord.Interaction, button: discord.Button):
         guild = bot.get_guild(886770756262961172)
         member = interaction.user
@@ -1039,7 +1047,7 @@ class DoneButton(discord.ui.View):
 class Verification(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
-    @discord.ui.button(label="Access the server!", style = discord.ButtonStyle.green)
+    @discord.ui.button(label="Access the server!", style = discord.ButtonStyle.green, custom_id='verify_button')
     async def on_callback(self, interaction: discord.Interaction, button: discord.Button):
         guild = bot.get_guild(886770756262961172)
         member = interaction.user
