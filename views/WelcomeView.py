@@ -27,7 +27,7 @@ class WelcomeView(View):
         await interaction.response.defer(ephemeral=True, thinking=True)
         await asyncio.sleep(0.5)
 
-        rolesChannelId = guildConfig['roles_channel_id']
+        rolesChannelId = guildConfig['add_roles_channel_id']
         await interaction.followup.send(f"You now have the onboarding role! Head over to the <#{rolesChannelId}> channel to pick some more!")
 
         self.value=False
