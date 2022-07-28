@@ -1,4 +1,3 @@
-from types import GenericAlias
 import discord
 from discord.ui import View
 
@@ -19,7 +18,7 @@ class WelcomeView(View):
     async def callback(self, interaction: discord.Interaction, button: discord.Button):
         user = interaction.user
 
-        guildConfig = GeneralUtils.getConfig('config.ini', 'guild')
+        guildConfig = GeneralUtils.getConfig('guild')
         newUserRoleId = guildConfig['new_user_role_id']
 
         role = discord.utils.get(interaction.guild.roles, id = int(newUserRoleId))

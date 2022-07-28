@@ -1,6 +1,12 @@
 from configparser import ConfigParser
+import json
 
-def getConfig(filename, section):
+def getMusicGenres():
+    genreFile = open('music_genres.json')
+    genresObject = json.load(genreFile)
+    return genresObject['music_genres']
+
+def getConfig(section, filename = 'config.ini'):
     parser = ConfigParser()
     parser.read(filename)
 
