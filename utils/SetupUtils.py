@@ -3,16 +3,6 @@ from discord.ext import commands
 
 from views import WelcomeView, PronounsView, PrononsView, GenreChooseView, GenreChoose2View, GenreChooseV2View, GenreChooseV3View, DoneButtonView, LastMSGV2View, LastMSGView, VerificationView
 
-def setupBot():
-    description = 'An administration bot'
-
-    intents = discord.Intents.default()
-    intents.guild_messages = True
-    intents.members = True
-    intents.bans = True
-
-    return commands.Bot(command_prefix=('-', '='), intents=intents, description=description)
-
 def importViews(bot: discord.ext.commands.Bot):
     bot.add_view(WelcomeView())
     bot.add_view(PronounsView())
@@ -31,8 +21,3 @@ async def importCogs(bot: discord.ext.commands.Bot):
         if filename.endswith(".py"):
             cogName = filename[:-3]
             await bot.load_extension("cogs.commands." + cogName)
-
-    for filename in os.listdir("./cogs/events"):
-        if filename.endswith(".py"):
-            cogName = filename[:-3]
-            await bot.load_extension("cogs.events." + cogName)
