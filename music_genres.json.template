@@ -1,0 +1,172 @@
+{
+    "music_genres": [
+        {
+            "roleID": 1,
+            "displayName": "Alternative Rock"
+        },
+        {
+            "roleID": 2,
+            "displayName": "Bluegrass"
+        },
+        {
+            "roleID": 3,
+            "displayName": "Blues"
+        },
+        {
+            "roleID": 4,
+            "displayName": "Christian Rock"
+        },
+        {
+            "roleID": 5,
+            "displayName": "Classic Hip-Hop"
+        },
+        {
+            "roleID": 6,
+            "displayName": "Classic Rock"
+        },
+        {
+            "roleID": 7,
+            "displayName": "Classical"
+        },
+        {
+            "roleID": 8,
+            "displayName": "Disco"
+        },
+        {
+            "roleID": 9,
+            "displayName": "Dubstep"
+        },
+        {
+            "roleID": 10,
+            "displayName": "EDM"
+        },
+        {
+            "roleID": 11,
+            "displayName": "Folk"
+        },
+        {
+            "roleID": 12,
+            "displayName": "Funk"
+        },
+        {
+            "roleID": 13,
+            "displayName": "Game Soundtrack"
+        },
+        {
+            "roleID": 14,
+            "displayName": "House"
+        },
+        {
+            "roleID": 15,
+            "displayName": "Indie"
+        },
+        {
+            "roleID": 16,
+            "displayName": "Indie Rock"
+        },
+        {
+            "roleID": 17,
+            "displayName": "Japanese Pop"
+        },
+        {
+            "roleID": 18,
+            "displayName": "Japanese Rock"
+        },
+        {
+            "roleID": 19,
+            "displayName": "Jazz"
+        },
+        {
+            "roleID": 20,
+            "displayName": "Korean Pop"
+        },
+        {
+            "roleID": 21,
+            "displayName": "Light Rock"
+        },
+        {
+            "roleID": 22,
+            "displayName": "Liquid DnB"
+        },
+        {
+            "roleID": 23,
+            "displayName": "Lofi"
+        },
+        {
+            "roleID": 24,
+            "displayName": "Lounge"
+        },
+        {
+            "roleID": 25,
+            "displayName": "Math Rock"
+        },
+        {
+            "roleID": 26,
+            "displayName": "Metal"
+        },
+        {
+            "roleID": 27,
+            "displayName": "Modern Country"
+        },
+        {
+            "roleID": 28,
+            "displayName": "Modern Hip-Hop"
+        },
+        {
+            "roleID": 29,
+            "displayName": "Modern Rock"
+        },
+        {
+            "roleID": 30,
+            "displayName": "Musicals"
+        },
+        {
+            "roleID": 31,
+            "displayName": "Neuro Dnb"
+        },
+        {
+            "roleID": 32,
+            "displayName": "Pop (10s & now)"
+        },
+        {
+            "roleID": 33,
+            "displayName": "Pop (20s)"
+        },
+        {
+            "roleID": 34,
+            "displayName": "Pop(90s)"
+        },
+        {
+            "roleID": 35,
+            "displayName": "Pop(80s)"
+        },
+        {
+            "roleID": 36,
+            "displayName": "Pop(70s)"
+        },
+        {
+            "roleID": 37,
+            "displayName": "Pop(60s)"
+        },
+        {
+            "roleID": 38,
+            "displayName": "Post-Rock"
+        },
+        {
+            "roleID": 39,
+            "displayName": "Rock"
+        },
+        {
+            "roleID": 40,
+            "displayName": "Swing"
+        },
+        {
+            "roleID": 41,
+            "displayName": "Synthwave"
+        },
+        {
+            "roleID": 42,
+            "displayName": "Trap"
+        }
+    ]
+}
