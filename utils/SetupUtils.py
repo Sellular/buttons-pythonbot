@@ -1,16 +1,13 @@
 import discord, os
 from discord.ext import commands
 
-from views import WelcomeView, PronounsView, PrononsView, GenreChooseView, GenreChoose2View, GenreChooseV2View, GenreChooseV3View, DoneButtonView, LastMSGV2View, LastMSGView, VerificationView
+from views import WelcomeView, PronounsView, PrononsView, GenreChooseView, DoneButtonView, LastMSGV2View, LastMSGView, VerificationView
 
 def importViews(bot: discord.ext.commands.Bot):
     bot.add_view(WelcomeView())
     bot.add_view(PronounsView())
     bot.add_view(PrononsView())
     bot.add_view(GenreChooseView())
-    bot.add_view(GenreChoose2View())
-    bot.add_view(GenreChooseV2View())
-    bot.add_view(GenreChooseV3View())
     bot.add_view(LastMSGView())
     bot.add_view(LastMSGV2View())
     bot.add_view(DoneButtonView())
