@@ -8,4 +8,4 @@ from views.GenreChooseV3View import GenreChooseV3View
 from views.LastMSGView import LastMSGView
 from views.LastMSGV2View import LastMSGV2View
 from views.VerificationView import VerificationView
-from views.DoneButtonView import DoneButtonView
+from views.components.DoneButtonView import DoneButtonView
