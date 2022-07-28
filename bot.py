@@ -22,6 +22,6 @@ class MyClient(commands.Bot):
         print('-----')
 
 bot = MyClient()
-botConfig = GeneralUtils.getConfig('config.ini', 'bot')
+botConfig = GeneralUtils.getConfig('bot')
 
 bot.run(botConfig['token'])
