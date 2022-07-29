@@ -13,11 +13,11 @@ class RoleSelect(Select):
         member = interaction.user
         selectedRoleID = int(self.values[0])
 
-        await interaction.response.edit_message(view = self)
+        await interaction.response.edit_message(view = self.view)
         role = discord.utils.get(guild.roles, id = selectedRoleID)
 
         followupPrefix = "Assigned"
-        if self.removeIfExist and member.get_role(role):
+        if self.removeIfExist and member.get_role(role.id):
             await member.remove_roles(role)
             followupPrefix = "Removed"
         else:
