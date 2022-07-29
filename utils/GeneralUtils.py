@@ -6,6 +6,11 @@ def getMusicGenres():
     genresObject = json.load(genreFile)
     return genresObject['music_genres']
 
+def getHobbies():
+    hobbyFile = open('hobbies.json')
+    hobbiesObject = json.load(hobbyFile)
+    return hobbiesObject['hobbies']
+
 def getConfig(section, filename = 'config.ini'):
     parser = ConfigParser()
     parser.read(filename)

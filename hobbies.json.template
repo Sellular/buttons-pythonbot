@@ -1,0 +1,12 @@
+{
+    "hobbies": [
+        {
+            "roleID": 1,
+            "displayName": "Audiophile"
+        },
+        {
+            "roleID": 2,
+            "displayName": "Producer"
+        }
+    ]
+}
