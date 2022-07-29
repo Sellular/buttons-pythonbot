@@ -20,18 +20,18 @@ class WelcomeView(View):
         user = interaction.user
         now = datetime.now(timezone.utc)
 
+        await interaction.response.defer(ephemeral=True, thinking=True)
+
         if abs(now - user.joined_at) < timedelta(seconds = 30):
             await interaction.followup.send("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.")
             return
     
-
         guildConfig = GeneralUtils.getConfig('guild')
-        newUserRoleId = guildConfig['new_member_role_id']
+        newUserRoleId = guildConfig['onboarding_role_id']
 
         role = discord.utils.get(interaction.guild.roles, id = int(newUserRoleId))
         await user.add_roles(role)
-        await interaction.response.defer(ephemeral=True, thinking=True)
-        await asyncio.sleep(0.5)
+        # await asyncio.sleep(0.5)
 
         rolesChannelId = guildConfig['add_roles_channel_id']
         await interaction.followup.send(f"You now have the onboarding role! Head over to the <#{rolesChannelId}> channel to pick some more!")
