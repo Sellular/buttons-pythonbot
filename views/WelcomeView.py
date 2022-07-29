@@ -4,6 +4,7 @@ from discord.ui import View
 from utils import GeneralUtils
 
 import asyncio
+from datetime import datetime, timedelta
 
 class WelcomeView(View):
     def __init__(self):
@@ -17,6 +18,11 @@ class WelcomeView(View):
     @discord.ui.button(label="Click here to start!", style=discord.ButtonStyle.green, custom_id="welcome_button")
     async def callback(self, interaction: discord.Interaction, button: discord.Button):
         user = interaction.user
+
+        if abs(datetime.utcnow() - user.joined_at) < timedelta(seconds = 30):
+            await interaction.followup.send("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.")
+            return
+    
 
         guildConfig = GeneralUtils.getConfig('guild')
         newUserRoleId = guildConfig['new_user_role_id']
