@@ -27,9 +27,9 @@ class WelcomeView(View):
             return
     
         guildConfig = GeneralUtils.getConfig('guild')
-        newUserRoleId = guildConfig['onboarding_role_id']
+        onboardingRoleId = guildConfig['onboarding_role_id']
 
-        role = discord.utils.get(interaction.guild.roles, id = int(newUserRoleId))
+        role = discord.utils.get(interaction.guild.roles, id = int(onboardingRoleId))
         await user.add_roles(role)
         # await asyncio.sleep(0.5)
 
