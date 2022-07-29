@@ -1,4 +1,4 @@
 from views.WelcomeView import WelcomeView
 from views.RoleChooseView import RoleChooseView
 from views.VerificationView import VerificationView
-from views.components.DoneButtonView import DoneButtonView
+from views.RoleSubmitButtonView import RoleSubmitButtonView

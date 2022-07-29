@@ -1,2 +1,1 @@
-from views.components.DoneButtonView import DoneButtonView
 from views.components.RoleSelect import RoleSelect
