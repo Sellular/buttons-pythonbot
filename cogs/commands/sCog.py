@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 from utils import GeneralUtils
-from views import PrononsView, RoleChooseView
+from views import RoleChooseView
 
 class sCog(commands.Cog):
     def __init__(self, bot):
@@ -10,10 +10,11 @@ class sCog(commands.Cog):
     
     @commands.command() 
     async def s(self, ctx): 
+        pronounArray = GeneralUtils.getPronouns()
         genreArray = GeneralUtils.getMusicGenres()
         hobbyArray = GeneralUtils.getHobbies()
 
-        pronounsView = PrononsView()
+        pronounsView = RoleChooseView(options = pronounArray, custom_id = "update_pronoun_select", removeIfExist=True)
         genreChooseView = RoleChooseView(options = genreArray, custom_id = "update_genre_select", removeIfExist=True)
         hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = 'update_hobby_select', removeIfExist=True)
 

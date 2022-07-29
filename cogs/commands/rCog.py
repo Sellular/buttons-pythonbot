@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 from utils import GeneralUtils
-from views import PronounsView, DoneButtonView, RoleChooseView
+from views import DoneButtonView, RoleChooseView
 
 class rCog(commands.Cog):
     def __init__(self, bot):
@@ -10,10 +10,11 @@ class rCog(commands.Cog):
     
     @commands.command()
     async def r(self, ctx):
+        pronounArray = GeneralUtils.getPronouns()
         genreArray = GeneralUtils.getMusicGenres()
         hobbyArray = GeneralUtils.getHobbies()
 
-        pronounsView = PronounsView()
+        pronounsView = RoleChooseView(options = pronounArray, custom_id = "pronoun_select")
         genreChooseView = RoleChooseView(options = genreArray, custom_id = "genre_select")
         hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = "hobby_select")
         doneButtonView = DoneButtonView()
