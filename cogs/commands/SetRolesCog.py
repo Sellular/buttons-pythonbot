@@ -4,12 +4,12 @@ from discord.ext import commands
 from utils import GeneralUtils
 from views import DoneButtonView, RoleChooseView
 
-class rCog(commands.Cog):
+class SetRolesCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command()
-    async def r(self, ctx):
+    @commands.command(aliases = ['sr'])
+    async def setroles(self, ctx):
         pronounArray = GeneralUtils.getPronouns()
         genreArray = GeneralUtils.getMusicGenres()
         hobbyArray = GeneralUtils.getHobbies()
@@ -30,4 +30,4 @@ class rCog(commands.Cog):
         self.bot.add_view(doneButtonView)
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(rCog(bot))
+    await bot.add_cog(SetRolesCog(bot))

@@ -4,12 +4,12 @@ from discord.ext import commands
 from utils import GeneralUtils
 from views import RoleChooseView
 
-class sCog(commands.Cog):
+class UpdateRolesCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command() 
-    async def s(self, ctx): 
+    @commands.command(aliases = ['ur']) 
+    async def updateroles(self, ctx): 
         pronounArray = GeneralUtils.getPronouns()
         genreArray = GeneralUtils.getMusicGenres()
         hobbyArray = GeneralUtils.getHobbies()
@@ -27,4 +27,4 @@ class sCog(commands.Cog):
         self.bot.add_view(hobbyChooseView)
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(sCog(bot))
+    await bot.add_cog(UpdateRolesCog(bot))
