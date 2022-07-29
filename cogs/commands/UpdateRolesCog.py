@@ -14,9 +14,9 @@ class UpdateRolesCog(commands.Cog):
         genreArray = GeneralUtils.getMusicGenres()
         hobbyArray = GeneralUtils.getHobbies()
 
-        pronounsView = RoleChooseView(options = pronounArray, custom_id = "update_pronoun_select", removeIfExist=True)
-        genreChooseView = RoleChooseView(options = genreArray, custom_id = "update_genre_select", removeIfExist=True)
-        hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = 'update_hobby_select', removeIfExist=True)
+        pronounsView = RoleChooseView(options = pronounArray, custom_id = "update_pronoun_select", updateMode=True)
+        genreChooseView = RoleChooseView(options = genreArray, custom_id = "update_genre_select", updateMode=True)
+        hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = 'update_hobby_select', updateMode=True)
 
         await ctx.send("Pick your pronoun roles here! We've got 'em all.", view=pronounsView)
         await ctx.send("Choose your genre preferences! Don't see your favs? You can suggest it in <#962242442193670204>.", view=genreChooseView)
