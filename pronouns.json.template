@@ -1,0 +1,32 @@
+{
+    "pronouns": [
+        {
+            "roleID": 1,
+            "displayName": "They / Them"
+        },
+        {
+            "roleID": 2,
+            "displayName": "She / Her"
+        },
+        {
+            "roleID": 3,
+            "displayName": "She / They"
+        },
+        {
+            "roleID": 4,
+            "displayName": "He / Him"
+        },
+        {
+            "roleID": 5,
+            "displayName": "He / They"
+        },
+        {
+            "roleID": 6,
+            "displayName": "Ask me"
+        },
+        {
+            "roleID": 7,
+            "displayName": "Any pronouns"
+        }
+    ]
+}

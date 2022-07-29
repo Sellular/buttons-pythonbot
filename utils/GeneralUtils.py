@@ -11,6 +11,11 @@ def getHobbies():
     hobbiesObject = json.load(hobbyFile)
     return hobbiesObject['hobbies']
 
+def getPronouns():
+    pronounFile = open('pronouns.json')
+    pronounsObject = json.load(pronounFile)
+    return pronounsObject['pronouns']
+
 def getConfig(section, filename = 'config.ini'):
     parser = ConfigParser()
     parser.read(filename)
