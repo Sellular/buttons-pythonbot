@@ -14,7 +14,7 @@ class WelcomeView(View):
         now = datetime.now(timezone.utc)
 
         if abs(now - user.joined_at) < timedelta(seconds = 30):
-            await interaction.response.send_message("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.")
+            await interaction.response.send_message("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.", ephemeral=True)
             return
     
         guildConfig = GeneralUtils.getConfig('guild')
