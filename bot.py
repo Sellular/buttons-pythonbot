@@ -12,6 +12,7 @@ class MyClient(commands.Bot):
         super().__init__(command_prefix=('!'), intents=intents)
 
     async def setup_hook(self) -> None:
+        SetupUtils.importViews(self)
         await SetupUtils.importCogs(self)
 
     async def on_ready(self):
