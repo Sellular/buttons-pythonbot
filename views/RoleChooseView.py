@@ -25,7 +25,7 @@ class RoleChooseView(View):
             if len(select.options) != 0 and len(select.options) % 25 == 0:
                 select.max_values = 25
                 self.add_item(select)
-                select = self.initSelect(len(self.children), placeholder, self.custom_id, self.updateMode)
+                select = self.initSelect(placeholder)
             roleID = option['roleID']
             displayName = option['displayName']
 
