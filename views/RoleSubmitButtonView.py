@@ -21,9 +21,8 @@ class RoleSubmitButtonView(View):
         if self.select_views:
             for select_view in self.select_views:
                 for select in select_view.children:
-                    if len(select.values) > 0:
-                        selectValue = select.values[0]
-                        role = discord.utils.get(guild.roles, id = selectValue)
+                    for value in select.values:
+                        role = discord.utils.get(guild.roles, id = int(value))
                         if role:
                             await member.add_roles(role)
 
