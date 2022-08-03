@@ -33,8 +33,8 @@ class RoleSubmitButtonView(View):
 
         guildConfig = GeneralUtils.getConfig('guild')
         member = interaction.user
-        verifiedRole = discord.utils.get(guild.roles, id = int(guildConfig['onboarding_role_id']))
-        await member.add_roles(verifiedRole)
+        newMemberRole = discord.utils.get(guild.roles, id = int(guildConfig['new_member_role_id']))
+        await member.add_roles(newMemberRole)
         channel = discord.utils.get(guild.text_channels, id = int(guildConfig['greeting_channel_id']))
         await channel.send(f"Hey Greeters! Let's give a warm welcome to {member.mention}! Once you've been introduced to our team, click this button to gain access to the rest of the server!", view = VerificationView())
 
