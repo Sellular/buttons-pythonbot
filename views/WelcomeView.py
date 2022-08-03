@@ -15,7 +15,7 @@ class WelcomeView(View):
         now = datetime.now(timezone.utc)
 
         await interaction.response.defer(ephemeral=True, thinking=True)
-        await asyncio.sleep(0.3) # Thinking...
+        await asyncio.sleep(0.2) # Thinking...
 
         if abs(now - user.joined_at) < timedelta(seconds = 30):
             await interaction.followup.send("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.", ephemeral=True)

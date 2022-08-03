@@ -21,7 +21,7 @@ class RoleSubmitButtonView(View):
         member = interaction.user
 
         await interaction.response.defer(ephemeral=True, thinking=True)
-        await asyncio.sleep(0.3) # Thinking...
+        await asyncio.sleep(0.2) # Thinking...
 
         if self.select_views:
             for select_view in self.select_views:

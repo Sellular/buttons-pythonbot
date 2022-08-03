@@ -11,6 +11,11 @@ def getHobbies():
     hobbiesObject = json.load(hobbyFile)
     return hobbiesObject['hobbies']
 
+def getNotifications():
+    notificationFile = open('notifications.json')
+    notificationsObject = json.load(notificationFile)
+    return notificationsObject['notifications']
+
 def getPronouns():
     pronounFile = open('pronouns.json')
     pronounsObject = json.load(pronounFile)

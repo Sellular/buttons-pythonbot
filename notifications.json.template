@@ -1,0 +1,28 @@
+{
+    "notifications": [
+        {
+            "roleID": 1,
+            "displayName": "New Albums"
+        },
+        {
+            "roleID": 2,
+            "displayName": "Rising Artists"
+        },
+        {
+            "roleID": 3,
+            "displayName": "Events"
+        },
+        {
+            "roleID": 4,
+            "displayName": "News"
+        },
+        {
+            "roleID": 5,
+            "displayName": "Weekly Discussions"
+        },
+        {
+            "roleID": 6,
+            "displayName": "Giveaways"
+        }
+    ]
+}

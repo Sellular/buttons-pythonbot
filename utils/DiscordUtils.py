@@ -16,16 +16,19 @@ async def sendAddRoles(bot: commands.Bot):
     channel = bot.get_channel(int(guildConfig['add_roles_channel_id']))
     pronounArray = GeneralUtils.getPronouns()
     genreArray = GeneralUtils.getMusicGenres()
+    notificationArray = GeneralUtils.getNotifications()
     hobbyArray = GeneralUtils.getHobbies()
 
     pronounChooseView = RoleChooseView(options = pronounArray, custom_id = "pronoun_select")
     genreChooseView = RoleChooseView(options = genreArray, custom_id = "genre_select")
     hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = "hobby_select")
-    doneButtonView = RoleSubmitButtonView(select_views = [pronounChooseView, genreChooseView, hobbyChooseView], custom_id = "submit_button")
+    notificationChooseView = RoleChooseView(options = notificationArray, custom_id = "notification_select")
+    doneButtonView = RoleSubmitButtonView(select_views = [pronounChooseView, genreChooseView, notificationChooseView, hobbyChooseView], custom_id = "submit_button")
 
     await channel.send("Pick your pronoun roles here! We've got 'em all.", view=pronounChooseView)
     await channel.send("Choose your genre preferences! Don't see your favs? You can suggest it in <#962242442193670204>.", view=genreChooseView)
     await channel.send('Do you like making music? Are you interested in things like beat loops and DAWs? Then the __producer__ role is for you! Are you interested in speaker setups? Do you own/want a high quality DAC and some high impedance headphones? Then the __audiophile__ role is for you!', view=hobbyChooseView)
+    await channel.send('Want to get notified about the latest events? Want to know about the newest releases in the music world? Notification roles are all here!', view=notificationChooseView)
     await channel.send('Once you have finished selecting your roles, click this button to continue your onboarding', view=doneButtonView)
 
 async def sendUpdateRoles(bot: commands.Bot):
@@ -33,14 +36,17 @@ async def sendUpdateRoles(bot: commands.Bot):
     channel = bot.get_channel(int(guildConfig['update_roles_channel_id']))
     pronounArray = GeneralUtils.getPronouns()
     genreArray = GeneralUtils.getMusicGenres()
+    notificationArray = GeneralUtils.getNotifications()
     hobbyArray = GeneralUtils.getHobbies()
 
     pronounsView = RoleChooseView(options = pronounArray, custom_id = "update_pronoun_select", updateMode=True)
     genreChooseView = RoleChooseView(options = genreArray, custom_id = "update_genre_select", updateMode=True)
+    notificationChooseView = RoleChooseView(options = notificationArray, custom_id = "notification_select", updateMode=True)
     hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = 'update_hobby_select', updateMode=True)
 
     await channel.send("Pick your pronoun roles here! We've got 'em all.", view=pronounsView)
     await channel.send("Choose your genre preferences! Don't see your favs? You can suggest it in <#962242442193670204>.", view=genreChooseView)
+    await channel.send('Want to get notified about the latest events? Want to know about the newest releases in the music world? Notification roles are all here!', view=notificationChooseView)
     await channel.send('Do you like making music? Are you interested in things like beat loops and DAWs? Then the __producer__ role is for you! Are you interested in speaker setups? Do you own/want a high quality DAC and some high impedance headphones? Then the __audiophile__ role is for you!', view=hobbyChooseView)
 
 async def sendWelcome(bot: commands.Bot):
