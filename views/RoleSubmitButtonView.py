@@ -1,6 +1,8 @@
 import discord
 from discord.ui import View, button
 
+import asyncio
+
 from utils import GeneralUtils
 from views import VerificationView
 
@@ -18,6 +20,9 @@ class RoleSubmitButtonView(View):
         guild = interaction.guild
         member = interaction.user
 
+        await interaction.response.defer(ephemeral=True, thinking=True)
+        await asyncio.sleep(0.3) # Thinking...
+
         if self.select_views:
             for select_view in self.select_views:
                 for select in select_view.children:
@@ -28,12 +33,10 @@ class RoleSubmitButtonView(View):
 
         guildConfig = GeneralUtils.getConfig('guild')
         member = interaction.user
-        verifiedRole = discord.utils.get(guild.roles, id = int(guildConfig['verified_role_id']))
+        verifiedRole = discord.utils.get(guild.roles, id = int(guildConfig['onboarding_role_id']))
         await member.add_roles(verifiedRole)
-        onboardingRole = discord.utils.get(guild.roles, id = int(guildConfig['onboarding_role_id']))
-        await member.remove_roles(onboardingRole)
         channel = discord.utils.get(guild.text_channels, id = int(guildConfig['greeting_channel_id']))
         await channel.send(f"Hey Greeters! Let's give a warm welcome to {member.mention}! Once you've been introduced to our team, click this button to gain access to the rest of the server!", view = VerificationView())
 
-        await interaction.response.send_message("Roles saved successfully")
+        await interaction.followup.send(f"You now have the new member role! Head over to our <#{guildConfig['greeting_channel_id']}> to meet our team!", ephemeral=True)
         

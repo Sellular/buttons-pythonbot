@@ -1,6 +1,8 @@
 import discord
 from discord.ui import Select
 
+import asyncio
+
 class RoleSelect(Select):
     updateMode = False
 
@@ -9,12 +11,15 @@ class RoleSelect(Select):
         super().__init__(placeholder = placeholder, custom_id = custom_id)
     
     async def callback(self, interaction: discord.Interaction):
+        message_id = interaction.message.id
+        await interaction.response.defer(ephemeral=True, thinking=True)
+        await asyncio.sleep(0.3) # Thinking...
         if self.updateMode:
             member = interaction.user
             guild = interaction.guild
             
-            await interaction.response.edit_message(view = self.view)
-            
+            await interaction.followup.edit_message(message_id = message_id, view = self.view)
+
             assignedRoles = []
             removedRoles = []
             for value in self.values:
@@ -34,4 +39,4 @@ class RoleSelect(Select):
                 rolesStr = ', '.join(removedRoles)
                 await interaction.followup.send(f"Removed role{'s' if len(removedRoles) > 1 else ''}: {rolesStr}")
         else:
-            await interaction.response.send_message(f"Your roles have been saved, and you'll receive them when you finish onboarding!", ephemeral = True)
+            await interaction.followup.send(f"Your roles have been saved, and you'll receive them when you finish onboarding!", ephemeral = True)

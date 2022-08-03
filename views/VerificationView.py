@@ -14,6 +14,6 @@ class VerificationView(View):
         member_role = discord.utils.get(guild.roles, id = int(guildConfig['member_role_id']))
         if member_role:
             await member.add_roles(member_role)
-            await interaction.response.send_message("You now have the new member role! Enjoy your stay in our server!!")
+            await interaction.response.defer(ephemeral=True, thinking=True)
         else:
             await interaction.response.send_message("Role not found. Contact bot developer or server admin")

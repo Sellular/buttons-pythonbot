@@ -3,6 +3,7 @@ from discord.ui import View
 
 from utils import GeneralUtils
 
+import asyncio
 from datetime import datetime, timedelta, timezone
 
 class WelcomeView(View):
@@ -13,8 +14,11 @@ class WelcomeView(View):
         user = interaction.user
         now = datetime.now(timezone.utc)
 
+        await interaction.response.defer(ephemeral=True, thinking=True)
+        await asyncio.sleep(0.3) # Thinking...
+
         if abs(now - user.joined_at) < timedelta(seconds = 30):
-            await interaction.response.send_message("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.", ephemeral=True)
+            await interaction.followup.send("Thanks for being excited to join our community! Please take a moment to read the above messages and try clicking this button again in a bit.", ephemeral=True)
             return
     
         guildConfig = GeneralUtils.getConfig('guild')
@@ -24,6 +28,6 @@ class WelcomeView(View):
         await user.add_roles(role)
 
         rolesChannelId = guildConfig['add_roles_channel_id']
-        await interaction.response.send_message(f"You now have the onboarding role! Head over to the <#{rolesChannelId}> channel to pick some more!")
+        await interaction.followup.send(f"You now have the onboarding role! Head over to the <#{rolesChannelId}> channel to pick some more!")
 
         self.value=False
