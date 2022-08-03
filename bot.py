@@ -13,13 +13,14 @@ class MyClient(commands.Bot):
 
     async def setup_hook(self) -> None:
         SetupUtils.importViews(self)
-        await SetupUtils.importCogs(self)
+        # await SetupUtils.importCogs(self)
 
     async def on_ready(self):
         print("Bot running with:")
         print("Username: ", self.user.name)
         print("User ID: ", self.user.id)
         print('-----')
+        await SetupUtils.resetViews(self)
 
 bot = MyClient()
 botConfig = GeneralUtils.getConfig('bot')

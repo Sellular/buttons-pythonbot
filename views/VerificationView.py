@@ -11,6 +11,13 @@ class VerificationView(View):
         guild = interaction.guild
         guildConfig = GeneralUtils.getConfig('guild')
         member = interaction.user
+
+        onboarding_role = discord.utils.get(guild.roles, id = int(guildConfig['onboarding_role_id']))
+        if onboarding_role:
+            await member.remove_roles(onboarding_role)
+        else:
+            await interaction.response.send_message("Role not found. Contact bot developer or server admin")
+        
         member_role = discord.utils.get(guild.roles, id = int(guildConfig['member_role_id']))
         if member_role:
             await member.add_roles(member_role)
