@@ -1,16 +1,19 @@
-import discord, os
+import discord
+import os
 from discord.ext import commands
 
 from utils import DiscordUtils, GeneralUtils
 from views import VerificationView, WelcomeView
 
+
 def importViews(bot: discord.Client):
     bot.add_view(VerificationView())
+
 
 async def resetViews(bot: discord.Client):
     guildConfig = GeneralUtils.getConfig('guild')
     channels_to_clear = [
-        guildConfig['add_roles_channel_id'], 
+        guildConfig['add_roles_channel_id'],
         guildConfig['update_roles_channel_id'],
         guildConfig['welcome_channel_id']
     ]

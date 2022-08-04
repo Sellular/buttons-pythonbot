@@ -4,6 +4,7 @@ from discord.ui import View, Button
 from views.components import RoleSelect
 from utils import GeneralUtils
 
+
 class RoleChooseView(View):
     updateMode = False
     custom_id = ""
@@ -15,7 +16,6 @@ class RoleChooseView(View):
 
         super().__init__(timeout=None)
         self.initSelects(options)
-        
 
     def initSelects(self, options: list):
         placeholder = 'Make a selection'
@@ -29,18 +29,21 @@ class RoleChooseView(View):
             roleID = option['roleID']
             displayName = option['displayName']
 
-            select.add_option(label = displayName, value = roleID)
-        
+            select.add_option(label=displayName, value=roleID)
+
         select.max_values = len(select.options)
         self.add_item(select)
 
         if self.updateMode:
-            button = Button(label = f"Remove All Above Roles", style=discord.ButtonStyle.red, custom_id = f"{self.custom_id}{len(self.children)}_remove_button", emoji="🗑️")
+            button = Button(label=f"Remove All Above Roles", style=discord.ButtonStyle.red,
+                            custom_id=f"{self.custom_id}{len(self.children)}_remove_button", emoji="🗑️")
+
             async def callback(self, interaction: discord.Interaction):
                 if self.options:
                     member = interaction.user
                     for role in self.options:
-                        removeRole = discord.utils.get(member.guild.roles, id = role['roleID'])
+                        removeRole = discord.utils.get(
+                            member.guild.roles, id=role['roleID'])
                         if removeRole:
                             await member.remove_roles(removeRole)
 
@@ -48,5 +51,6 @@ class RoleChooseView(View):
             self.add_item(button)
 
     def initSelect(self, placeholder: str):
-        select = RoleSelect(placeholder=placeholder, custom_id = f"{self.custom_id}{len(self.children)}", updateMode=self.updateMode)
+        select = RoleSelect(placeholder=placeholder,
+                            custom_id=f"{self.custom_id}{len(self.children)}", updateMode=self.updateMode)
         return select
