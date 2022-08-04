@@ -26,8 +26,8 @@ async def resetViews(bot: discord.Client):
                 await DiscordUtils.sendAddRoles(bot)
             elif channel_id_str == guildConfig['update_roles_channel_id']:
                 await DiscordUtils.sendUpdateRoles(bot)
-            # elif channel_id_str == guildConfig['welcome_channel_id']:
-            #     await DiscordUtils.sendWelcome(bot)
+            elif channel_id_str == guildConfig['welcome_channel_id']:
+                await DiscordUtils.sendWelcome(bot)
 
 # async def importCogs(bot: discord.ext.discord.Client):
 #     for filename in os.listdir("./cogs/commands"):
