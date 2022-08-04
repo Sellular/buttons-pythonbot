@@ -4,52 +4,41 @@ from discord.ext import commands
 from utils import GeneralUtils
 from views import RoleChooseView, RoleSubmitButtonView, WelcomeView
 
-async def clearChannel(channel_id: int, bot: commands.Bot):
+async def clearChannel(channel_id: int, bot: discord.Client):
     channel = bot.get_channel(channel_id)
     if (channel):
         await channel.purge(check = lambda message : True, bulk=True)
         return channel
     return None
 
-async def sendAddRoles(bot: commands.Bot):
+async def sendAddRoles(bot: discord.Client):
+    await sendRoles(bot, False)
+
+async def sendUpdateRoles(bot: discord.Client):
+    await sendRoles(bot, True)    
+
+async def sendRoles(bot: discord.Client, updateMode: bool):
     guildConfig = GeneralUtils.getConfig('guild')
-    channel = bot.get_channel(int(guildConfig['add_roles_channel_id']))
+    channel = bot.get_channel(int(guildConfig[f'{"update" if updateMode else "add"}_roles_channel_id']))
     pronounArray = GeneralUtils.getPronouns()
     genreArray = GeneralUtils.getMusicGenres()
     notificationArray = GeneralUtils.getNotifications()
     hobbyArray = GeneralUtils.getHobbies()
 
-    pronounChooseView = RoleChooseView(options = pronounArray, custom_id = "pronoun_select")
-    genreChooseView = RoleChooseView(options = genreArray, custom_id = "genre_select")
-    hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = "hobby_select")
-    notificationChooseView = RoleChooseView(options = notificationArray, custom_id = "notification_select")
-    doneButtonView = RoleSubmitButtonView(select_views = [pronounChooseView, genreChooseView, notificationChooseView, hobbyChooseView], custom_id = "submit_button")
+    pronounChooseView = RoleChooseView(options = pronounArray, custom_id = f"{'update_' if updateMode else ''}pronoun_select", updateMode=updateMode)
+    genreChooseView = RoleChooseView(options = genreArray, custom_id = f"{'update_' if updateMode else ''}genre_select", updateMode=updateMode)
+    notificationChooseView = RoleChooseView(options = notificationArray, custom_id = f"{'update_' if updateMode else ''}notification_select", updateMode=updateMode)
+    hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = f"{'update_' if updateMode else ''}hobby_select", updateMode=updateMode)
 
     await channel.send("Pick your pronoun roles here! We've got 'em all.", view=pronounChooseView)
     await channel.send("Choose your genre preferences! Don't see your favs? You can suggest it in <#962242442193670204>.", view=genreChooseView)
-    await channel.send('Do you like making music? Are you interested in things like beat loops and DAWs? Then the __producer__ role is for you! Are you interested in speaker setups? Do you own/want a high quality DAC and some high impedance headphones? Then the __audiophile__ role is for you!', view=hobbyChooseView)
-    await channel.send('Want to get notified about the latest events? Want to know about the newest releases in the music world? Notification roles are all here!', view=notificationChooseView)
-    await channel.send('Once you have finished selecting your roles, click this button to continue your onboarding', view=doneButtonView)
-
-async def sendUpdateRoles(bot: commands.Bot):
-    guildConfig = GeneralUtils.getConfig('guild')
-    channel = bot.get_channel(int(guildConfig['update_roles_channel_id']))
-    pronounArray = GeneralUtils.getPronouns()
-    genreArray = GeneralUtils.getMusicGenres()
-    notificationArray = GeneralUtils.getNotifications()
-    hobbyArray = GeneralUtils.getHobbies()
-
-    pronounsView = RoleChooseView(options = pronounArray, custom_id = "update_pronoun_select", updateMode=True)
-    genreChooseView = RoleChooseView(options = genreArray, custom_id = "update_genre_select", updateMode=True)
-    notificationChooseView = RoleChooseView(options = notificationArray, custom_id = "notification_select", updateMode=True)
-    hobbyChooseView = RoleChooseView(options = hobbyArray, custom_id = 'update_hobby_select', updateMode=True)
-
-    await channel.send("Pick your pronoun roles here! We've got 'em all.", view=pronounsView)
-    await channel.send("Choose your genre preferences! Don't see your favs? You can suggest it in <#962242442193670204>.", view=genreChooseView)
     await channel.send('Want to get notified about the latest events? Want to know about the newest releases in the music world? Notification roles are all here!', view=notificationChooseView)
     await channel.send('Do you like making music? Are you interested in things like beat loops and DAWs? Then the __producer__ role is for you! Are you interested in speaker setups? Do you own/want a high quality DAC and some high impedance headphones? Then the __audiophile__ role is for you!', view=hobbyChooseView)
+    if not updateMode:
+        doneButtonView = RoleSubmitButtonView(select_views = [pronounChooseView, genreChooseView, notificationChooseView, hobbyChooseView], custom_id = "submit_button")
+        await channel.send('Once you have finished selecting your roles, click this button to continue your onboarding', view=doneButtonView)
 
-async def sendWelcome(bot: commands.Bot):
+async def sendWelcome(bot: discord.Client):
     guildConfig = GeneralUtils.getConfig('guild')
     channel = bot.get_channel(int(guildConfig['welcome_channel_id']))
     await channel.send("**Welcome to the Rok & Roll community!** \n" + 
