@@ -134,3 +134,6 @@ music_genres.json
 hobbies.json
 notifications.json
 pronouns.json
+
+#vscode
+.vscode/settings.json
