@@ -29,7 +29,7 @@ class RoleChooseView(View):
             roleID = option['roleID']
             displayName = option['displayName']
 
-            select.add_option(label=displayName, value=roleID)
+            select.add_option(label=displayName, value=str(roleID))
 
         select.max_values = len(select.options)
         self.add_item(select)
