@@ -2,7 +2,8 @@ import discord
 from discord.ui import View, Button
 
 from views.components import RoleSelect
-from utils import GeneralUtils
+
+import asyncio
 
 
 class RoleChooseView(View):
@@ -39,6 +40,8 @@ class RoleChooseView(View):
                             custom_id=f"{self.custom_id}{len(self.children)}_remove_button", emoji="🗑️")
 
             async def callback(self, button: discord.ui.Button, interaction: discord.Interaction):
+                await interaction.response.defer(ephemeral=True)
+                await asyncio.sleep(0.2)  # Thinking...
                 if self.options:
                     member = interaction.user
                     for role in self.options:
@@ -46,6 +49,7 @@ class RoleChooseView(View):
                             member.guild.roles, id=role['roleID'])
                         if removeRole:
                             await member.remove_roles(removeRole)
+                    await interaction.followup.send("All roles in that dropdown have been removed.", ephemeral=True)
 
             button.callback = callback
             self.add_item(button)

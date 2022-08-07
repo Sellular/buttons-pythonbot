@@ -35,9 +35,9 @@ class RoleSelect(Select):
 
             if len(assignedRoles) > 0:
                 rolesStr = ', '.join(assignedRoles)
-                await interaction.followup.send(f"Assigned role{'s' if len(assignedRoles) > 1 else ''}: {rolesStr}")
+                await interaction.followup.send(f"Assigned role{'s' if len(assignedRoles) > 1 else ''}: {rolesStr}", ephemeral=True)
             if len(removedRoles) > 0:
                 rolesStr = ', '.join(removedRoles)
-                await interaction.followup.send(f"Removed role{'s' if len(removedRoles) > 1 else ''}: {rolesStr}")
+                await interaction.followup.send(f"Removed role{'s' if len(removedRoles) > 1 else ''}: {rolesStr}", ephemeral=True)
         else:
             await interaction.followup.send(f"Your roles have been saved, and you'll receive them when you finish onboarding!", ephemeral=True)

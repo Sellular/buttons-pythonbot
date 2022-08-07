@@ -87,7 +87,7 @@ async def sendWelcome(bot: discord.Client):
                            ":small_blue_diamond: Of course! We host a variety of fun events for you all to participate in! We've got listening parties, talent shows, and everything in between.\n" +
                            "- You can find any ongoing and upcoming events in the events tab! Probably obvious, we know.\n" +
                            ":small_blue_diamond: We host a weekly debate club - err… I mean, weekly discussion board, for all your hot takes, unpopular opinions, or general infodumps!\n" +
-                           f"- Which you can find in <#{guildConfig['weekly_discussion_channel_id']}! Come on in, share your thoughts, and enjoy the conversation!\n" +
+                           f"- Which you can find in <#{guildConfig['weekly_discussion_channel_id']}>! Come on in, share your thoughts, and enjoy the conversation!\n" +
                            ":small_blue_diamond: We got all the latest new release information and reviews for you to kick back and read!\n" +
                            f"- Check out <#{guildConfig['whats_new_channel_id']}> for all the latest and greatest! After you're done listening (or before, we won't judge) you can head on over to <#{guildConfig['reviews_channel_id']}> to see what other people are saying! Feel free to add to pre-existing threads and keep the conversation going!\n" +
                            "**Sounds great! How do I join?**\n" +
