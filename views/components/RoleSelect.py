@@ -13,7 +13,7 @@ class RoleSelect(Select):
 
     async def callback(self, interaction: discord.Interaction):
         message_id = interaction.message.id
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        await interaction.response.defer(ephemeral=True)
         await asyncio.sleep(0.2)  # Thinking...
         if self.updateMode:
             member = interaction.user

@@ -12,11 +12,11 @@ class WelcomeView(View):
         super().__init__(timeout=None)
 
     @discord.ui.button(label="Click here to start!", style=discord.ButtonStyle.green, custom_id="welcome_button")
-    async def callback(self, interaction: discord.Interaction, button: discord.Button):
+    async def callback(self, button: discord.ui.Button, interaction: discord.Interaction):
         user = interaction.user
         now = datetime.now(timezone.utc)
 
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        await interaction.response.defer(ephemeral=True)
         await asyncio.sleep(0.2)  # Thinking...
 
         if abs(now - user.joined_at) < timedelta(seconds=30):
