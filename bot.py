@@ -1,9 +1,8 @@
 import discord
-from discord.ext import commands
 
-from utils import SetupUtils, GeneralUtils
+from utils import SetupUtils, GeneralUtils, DBUtils
 
-
+# commands.Bot if commands are needed
 class MyClient(discord.Client):
     def __init__(self):
         intents = discord.Intents.default()
@@ -23,6 +22,7 @@ class MyClient(discord.Client):
         print('-----')
         await SetupUtils.resetViews(self)
 
+DBUtils.checkTables()
 
 bot = MyClient()
 botConfig = GeneralUtils.getConfig('bot')
