@@ -137,3 +137,6 @@ pronouns.json
 
 #vscode
 .vscode/settings.json
+
+#databases
+*.db

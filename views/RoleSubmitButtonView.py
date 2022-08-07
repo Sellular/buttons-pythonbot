@@ -26,17 +26,18 @@ class RoleSubmitButtonView(View):
         await asyncio.sleep(0.2)  # Thinking...
 
         try:
+            role_list = []
             if self.select_views:
                 for select_view in self.select_views:
                     for select in select_view.children:
                         for value in select.values:
                             role = discord.utils.get(guild.roles, id=int(value))
                             if role:
-                                OnboardingRoleDAO.insert(
-                                    str(member.id), str(role.id))
+                                role_list.append((member.id, role.id))
+            OnboardingRoleDAO.insertMany(role_list)
         except (Exception) as error:
             print(error)
-            interaction.followup.send("Error while saving roles. Contact bot developer or server admin")
+            await interaction.followup.send("Error while saving roles. Contact bot developer or server admin")
         else:
             guildConfig = GeneralUtils.getConfig('guild')
 

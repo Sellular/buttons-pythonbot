@@ -1,64 +1,87 @@
 from utils import DBUtils
 from model import OnboardingRole
-from psycopg2 import DatabaseError
+
+__onboardingRoleSelectByMemberSql = """
+    SELECT * FROM onboarding_roles
+    WHERE member_id = ?;
+"""
 
 __onboardingRoleInsertSql = """
-    INSERT INTO onboarding_roles (
+    INSERT OR IGNORE INTO onboarding_roles (
         member_id,
         role_id
     ) VALUES (
-        %s,
-        %s
+        ?,
+        ?
     );
 """
 
 __onboardingRoleDeleteByMemberSql = """
     DELETE FROM onboarding_roles
-    WHERE member_id = %s
-    RETURNING *;
+    WHERE member_id = ?;
 """
 
 
-def insert(memberID: str, roleID: str):
+def getOnboardingRolesByMember(memberID: str):
+    dbConnection = None
+    dbCursor = None
+    try:
+        dbConnection = DBUtils.getDBConnection()
+
+        dbCursor = dbConnection.execute(
+            __onboardingRoleDeleteByMemberSql, (memberID,))
+        rows = dbCursor.fetchall()
+
+        if rows:
+            roles = []
+            for row in rows:
+                roles.append(OnboardingRole(
+                    row['member_id'],
+                    row['role_id']
+                ))
+
+            return roles
+    except (Exception) as error:
+        raise error
+    finally:
+        if dbCursor:
+            dbCursor.close()
+        if dbConnection:
+            dbConnection.close()
+
+
+def insertMany(role_list: list):
     dbConnection = None
     try:
         dbConnection = DBUtils.getDBConnection()
-        dbCursor = dbConnection.cursor()
 
-        dbCursor.execute(__onboardingRoleInsertSql, (memberID, roleID))
-
-        dbConnection.commit()
-        dbCursor.close()
-    except (Exception, DatabaseError) as error:
+        with dbConnection:
+            dbCursor = dbConnection.executemany(
+                __onboardingRoleInsertSql, role_list)
+            dbConnection.commit()
+    except (Exception) as error:
         raise error
     finally:
-        if dbConnection is not None:
+        if dbCursor:
+            dbCursor.close()
+        if dbConnection:
             dbConnection.close()
 
 
 def deleteOnboardingRolesByMember(memberID: str):
     dbConnection = None
+    dbCursor = None
     try:
         dbConnection = DBUtils.getDBConnection()
-        dbCursor = dbConnection.cursor()
 
-        dbCursor.execute(__onboardingRoleDeleteByMemberSql, (memberID,))
-        deletedRows = dbCursor.fetchall()
-        
-        dbConnection.commit()
-        dbCursor.close()
-        
-        if deletedRows:
-            deletedRoles = []
-            for row in deletedRows:
-                deletedRoles.append(OnboardingRole(
-                    row[0],
-                    row[1]
-                ))
-
-            return deletedRoles
-    except (Exception, DatabaseError) as error:
+        with dbConnection:
+            dbCursor = dbConnection.execute(
+                __onboardingRoleDeleteByMemberSql, (memberID,))
+            dbConnection.commit()
+    except (Exception) as error:
         raise error
     finally:
-        if dbConnection is not None:
+        if dbCursor:
+            dbCursor.close()
+        if dbConnection:
             dbConnection.close()

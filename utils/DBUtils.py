@@ -1,6 +1,4 @@
-import psycopg2
-
-from utils import GeneralUtils
+import sqlite3
 
 __onboardingRoleTableSql = """
     CREATE TABLE IF NOT EXISTS onboarding_roles (
@@ -12,15 +10,14 @@ __onboardingRoleTableSql = """
 
 
 def getDBConnection():
-    dbConfig = GeneralUtils.getConfig('postgresql')
-
     dbConnection = None
     try:
-        dbConnection = psycopg2.connect(**dbConfig)
+        dbConnection = sqlite3.connect('pycord.db')
+        dbConnection.row_factory = sqlite3.Row
 
         return dbConnection
-    except (Exception, psycopg2.DatabaseError) as error:
-        if dbConnection is not None:
+    except (Exception) as error:
+        if dbConnection:
             dbConnection.close()
         raise error
 
@@ -37,9 +34,8 @@ def checkTables():
 
         dbConnection.commit()
         dbCursor.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+    except (Exception) as error:
         raise error
     finally:
-        if dbConnection is not None:
+        if dbConnection:
             dbConnection.close()

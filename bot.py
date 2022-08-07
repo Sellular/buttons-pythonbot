@@ -22,9 +22,12 @@ class MyClient(discord.Client):
         print('-----')
         await SetupUtils.resetViews(self)
 
-DBUtils.checkTables()
+try:
+    DBUtils.checkTables()
+except (Exception) as error:
+    print(error)
+else:
+    bot = MyClient()
+    botConfig = GeneralUtils.getConfig('bot')
 
-bot = MyClient()
-botConfig = GeneralUtils.getConfig('bot')
-
-bot.run(botConfig['token'])
+    bot.run(botConfig['token'])

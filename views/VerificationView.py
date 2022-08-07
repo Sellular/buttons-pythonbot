@@ -22,8 +22,8 @@ class VerificationView(View):
 
         additional_roles = None
         try:
-            additional_roles = OnboardingRoleDAO.deleteOnboardingRolesByMember(
-                str(member.id))
+            additional_roles = OnboardingRoleDAO.getOnboardingRolesByMember(str(member.id))
+            OnboardingRoleDAO.deleteOnboardingRolesByMember(str(member.id))
         except (Exception) as error:
             print(error)
             await interaction.followup.send("Error during verification. Contact bot developer or server admin")
