@@ -5,6 +5,7 @@ import asyncio
 
 from utils import GeneralUtils
 from views import VerificationView
+from dao import OnboardingRoleDAO
 
 
 class RoleSubmitButtonView(View):
@@ -17,28 +18,36 @@ class RoleSubmitButtonView(View):
         super().__init__(timeout=None)
 
     @button(label="Click once you've assigned your roles!", style=discord.ButtonStyle.green, custom_id=f'{custom_id}_button')
-    async def on_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
+    async def on_callback(self, button: discord.ui.Button, interaction: discord.Interaction):
         guild = interaction.guild
         member = interaction.user
 
-        await interaction.response.defer(ephemeral=True, thinking=True)
+        await interaction.response.defer(ephemeral=True)
         await asyncio.sleep(0.2)  # Thinking...
 
-        if self.select_views:
-            for select_view in self.select_views:
-                for select in select_view.children:
-                    for value in select.values:
-                        role = discord.utils.get(guild.roles, id=int(value))
-                        if role:
-                            await member.add_roles(role)
+        try:
+            if self.select_views:
+                for select_view in self.select_views:
+                    for select in select_view.children:
+                        for value in select.values:
+                            role = discord.utils.get(guild.roles, id=int(value))
+                            if role:
+                                OnboardingRoleDAO.insert(
+                                    str(member.id), str(role.id))
+        except (Exception) as error:
+            print(error)
+            interaction.followup.send("Error while saving roles. Contact bot developer or server admin")
+        else:
+            guildConfig = GeneralUtils.getConfig('guild')
 
-        guildConfig = GeneralUtils.getConfig('guild')
-        member = interaction.user
-        newMemberRole = discord.utils.get(
-            guild.roles, id=int(guildConfig['new_member_role_id']))
-        await member.add_roles(newMemberRole)
-        channel = discord.utils.get(guild.text_channels, id=int(
-            guildConfig['greeting_channel_id']))
-        await channel.send(f"Hey Greeters! Let's give a warm welcome to {member.mention}! Once you've been introduced to our team, click this button to gain access to the rest of the server!", view=VerificationView())
+            newMemberRole = discord.utils.get(
+                guild.roles, id=int(guildConfig['new_member_role_id']))
 
-        await interaction.followup.send(f"You now have the new member role! Head over to our <#{guildConfig['greeting_channel_id']}> to meet our team!", ephemeral=True)
+            await member.add_roles(newMemberRole)
+
+            channel = discord.utils.get(guild.text_channels, id=int(
+                guildConfig['greeting_channel_id']))
+
+            await channel.send(f"Hey Greeters! Let's give a warm welcome to {member.mention}! Once you've been introduced to our team, click this button to gain access to the rest of the server!", view=VerificationView())
+
+            await interaction.followup.send(f"You now have the new member role! Head over to our <#{guildConfig['greeting_channel_id']}> to meet our team!", ephemeral=True)
