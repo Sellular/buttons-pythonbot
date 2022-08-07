@@ -15,17 +15,17 @@ class RoleChooseView(View):
         self.options = options
 
         super().__init__(timeout=None)
-        self.initSelects(options)
+        self.__initSelects(options)
 
-    def initSelects(self, options: list):
+    def __initSelects(self, options: list):
         placeholder = 'Make a selection'
 
-        select = self.initSelect(placeholder)
+        select = self.__initSelect(placeholder)
         for option in options:
             if len(select.options) != 0 and len(select.options) % 25 == 0:
                 select.max_values = 25
                 self.add_item(select)
-                select = self.initSelect(placeholder)
+                select = self.__initSelect(placeholder)
             roleID = option['roleID']
             displayName = option['displayName']
 
@@ -38,7 +38,7 @@ class RoleChooseView(View):
             button = Button(label=f"Remove All Above Roles", style=discord.ButtonStyle.red,
                             custom_id=f"{self.custom_id}{len(self.children)}_remove_button", emoji="🗑️")
 
-            async def callback(self, interaction: discord.Interaction):
+            async def callback(self, button: discord.ui.Button, interaction: discord.Interaction):
                 if self.options:
                     member = interaction.user
                     for role in self.options:
@@ -50,7 +50,7 @@ class RoleChooseView(View):
             button.callback = callback
             self.add_item(button)
 
-    def initSelect(self, placeholder: str):
+    def __initSelect(self, placeholder: str):
         select = RoleSelect(placeholder=placeholder,
                             custom_id=f"{self.custom_id}{len(self.children)}", updateMode=self.updateMode)
         return select
