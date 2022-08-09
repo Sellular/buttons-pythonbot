@@ -31,6 +31,6 @@ class WelcomeView(View):
         await user.add_roles(role)
 
         rolesChannelId = guildConfig['add_roles_channel_id']
-        await interaction.followup.send(f"You now have the onboarding role! Head over to the <#{rolesChannelId}> channel to pick some more!")
+        await interaction.followup.send(f"You now have the onboarding role! Head over to the <#{rolesChannelId}> channel to pick some more!", ephemeral=True)
 
         self.value = False
