@@ -12,7 +12,7 @@ class RoleSubmitButtonView(View):
     custom_id = ""
     select_views = []
 
-    def __init__(self, select_views: list, custom_id: str):
+    def __init__(self, select_views: list = [], custom_id: str = ""):
         self.custom_id = custom_id
         self.select_views = select_views
         super().__init__(timeout=None)
@@ -37,7 +37,7 @@ class RoleSubmitButtonView(View):
             OnboardingRoleDAO.insertMany(role_list)
         except (Exception) as error:
             print(error)
-            await interaction.followup.send("Error while saving roles. Contact bot developer or server admin")
+            await interaction.followup.send("Error while saving roles. Contact bot developer or server admin", ephemeral=True)
         else:
             guildConfig = GeneralUtils.getConfig('guild')
 
@@ -49,6 +49,9 @@ class RoleSubmitButtonView(View):
             channel = discord.utils.get(guild.text_channels, id=int(
                 guildConfig['greeting_channel_id']))
 
-            await channel.send(f"Hey Greeters! Let's give a warm welcome to {member.mention}! Once you've been introduced to our team, click this button to gain access to the rest of the server!", view=VerificationView())
+            verification_view = VerificationView()
+            interaction.client.add_view(verification_view)
+
+            await channel.send(f"Hey Greeters! Let's give a warm welcome to {member.mention}! Once you've been introduced to our team, click this button to gain access to the rest of the server!", view=verification_view)
 
             await interaction.followup.send(f"You now have the new member role! Head over to our <#{guildConfig['greeting_channel_id']}> to meet our team!", ephemeral=True)

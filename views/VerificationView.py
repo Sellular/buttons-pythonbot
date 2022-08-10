@@ -26,7 +26,7 @@ class VerificationView(View):
             OnboardingRoleDAO.deleteOnboardingRolesByMember(str(member.id))
         except (Exception) as error:
             print(error)
-            await interaction.followup.send("Error during verification. Contact bot developer or server admin")
+            await interaction.followup.send("Error during verification. Contact bot developer or server admin", ephemeral=True)
         else:
             if additional_roles:
                 for role in additional_roles:
@@ -38,11 +38,11 @@ class VerificationView(View):
             if onboarding_role:
                 await member.remove_roles(onboarding_role)
             else:
-                await interaction.followup.send("Role not found. Contact bot developer or server admin")
+                await interaction.followup.send("Role not found. Contact bot developer or server admin", ephemeral=True)
 
             member_role = discord.utils.get(guild.roles, id=int(guildConfig['member_role_id']))
             if member_role:
                 await member.add_roles(member_role)
-                await interaction.followup.send(f"You now have the {member_role.name} role! Enjoy your stay in our server!!")
+                await interaction.followup.send(f"You now have the {member_role.name} role! Enjoy your stay in our server!!", ephemeral=True)
             else:
-                await interaction.followup.send("Role not found. Contact bot developer or server admin")
+                await interaction.followup.send("Role not found. Contact bot developer or server admin", ephemeral=True)
