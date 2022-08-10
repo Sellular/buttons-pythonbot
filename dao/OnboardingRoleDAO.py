@@ -29,7 +29,7 @@ def getOnboardingRolesByMember(memberID: str):
         dbConnection = DBUtils.getDBConnection()
 
         dbCursor = dbConnection.execute(
-            __onboardingRoleDeleteByMemberSql, (memberID,))
+            __onboardingRoleSelectByMemberSql, (memberID,))
         rows = dbCursor.fetchall()
 
         if rows:
