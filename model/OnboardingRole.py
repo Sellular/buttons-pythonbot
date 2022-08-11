@@ -1,9 +1,9 @@
 
 class OnboardingRole:
 
-    memberID = '',
+    memberID = ''
     roleID = ''
 
-    def __init__(self, memberID, roleID):
+    def __init__(self, memberID: str, roleID: str):
         self.memberID = memberID
         self.roleID = roleID
