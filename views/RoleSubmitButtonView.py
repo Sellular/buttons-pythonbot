@@ -12,7 +12,10 @@ class RoleSubmitButtonView(View):
     custom_id = ""
     select_views = []
 
-    def __init__(self, select_views: list = [], custom_id: str = ""):
+    def __init__(self, select_views: list = None, custom_id: str = ""):
+        if not select_views:
+            select_views = []
+            
         self.custom_id = custom_id
         self.select_views = select_views
         super().__init__(timeout=None)

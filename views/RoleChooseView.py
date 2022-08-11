@@ -10,7 +10,10 @@ class RoleChooseView(View):
     updateMode = False
     custom_id = ""
 
-    def __init__(self, options: list = [], custom_id: str = "", updateMode: bool = False):
+    def __init__(self, options: list = None, custom_id: str = "", updateMode: bool = False):
+        if not options:
+            options = []
+            
         self.updateMode = updateMode
         self.custom_id = custom_id
         self.options = options
