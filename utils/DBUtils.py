@@ -9,6 +9,16 @@ __onboardingRoleTableSql = """
 """
 
 
+__leftMemberRoleTableSql = """
+    CREATE TABLE IF NOT EXISTS left_members (
+        member_id   TEXT    NOT NULL,
+        role_id     TEXT    NOT NULL,
+        left_date   TEXT    NOT NULL,
+        PRIMARY KEY(member_id, role_id)
+    )
+"""
+
+
 def getDBConnection():
     dbConnection = None
     try:
@@ -27,7 +37,7 @@ def checkTables():
 
     try:
         dbCursor = dbConnection.cursor()
-        tableCommands = (__onboardingRoleTableSql,)
+        tableCommands = (__onboardingRoleTableSql, __leftMemberRoleTableSql)
 
         for command in tableCommands:
             dbCursor.execute(command)

@@ -3,7 +3,7 @@ import os
 from discord.ext import commands
 
 from utils import DiscordUtils, GeneralUtils
-from views import VerificationView, WelcomeView, RoleChooseView, RoleSubmitButtonView
+from views import VerificationView, WelcomeView
 
 
 def importViews(bot: commands.Bot):
@@ -33,3 +33,8 @@ async def importCogs(bot: commands.Bot):
         if filename.endswith(".py"):
             cogName = filename[:-3]
             bot.load_extension("cogs.commands." + cogName)
+
+    for filename in os.listdir("./cogs/events"):
+        if filename.endswith(".py"):
+            cogName = filename[:-3]
+            bot.load_extension("cogs.events." + cogName)
