@@ -6,7 +6,7 @@ class LeftMemberRole:
     roleID = ""
     leftDate = datetime.now()
 
-    def __init(self, memberID: str, roleID: str, leftDate: datetime):
+    def __init__(self, memberID: str, roleID: str, leftDate: datetime):
         self.memberID = memberID
         self.roleID = roleID
         self.leftDate = leftDate
