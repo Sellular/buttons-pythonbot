@@ -38,3 +38,8 @@ async def importCogs(bot: commands.Bot):
         if filename.endswith(".py"):
             cogName = filename[:-3]
             bot.load_extension("cogs.events." + cogName)
+
+    for filename in os.listdir("./cogs/tasks"):
+        if filename.endswith(".py"):
+            cogName = filename[:-3]
+            bot.load_extension("cogs.tasks." + cogName)
