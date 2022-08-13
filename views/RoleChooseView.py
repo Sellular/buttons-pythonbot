@@ -1,9 +1,6 @@
-import discord
-from discord.ui import View, Button
+from discord.ui import View
 
 from views.components import RoleSelect, RemoveAllRolesButton
-
-import asyncio
 
 
 class RoleChooseView(View):
