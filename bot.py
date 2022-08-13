@@ -22,10 +22,18 @@ class MyClient(commands.Bot):
 
 try:
     DBUtils.checkTables()
-except (Exception) as error:
-    print(error)
-else:
+
     bot = MyClient()
     botConfig = GeneralUtils.getConfig('bot')
 
-    bot.run(botConfig['token'])
+    if not botConfig:
+        raise Exception("Bot config not found.")
+
+    bot_token = botConfig['token']
+    if not bot_token
+        raise Exception("TOKEN not found in Bot config")
+
+    bot.run(bot_token)
+
+except (Exception) as error:
+    print(error)
