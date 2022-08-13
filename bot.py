@@ -30,7 +30,7 @@ try:
         raise Exception("Bot config not found.")
 
     bot_token = botConfig['token']
-    if not bot_token
+    if not bot_token:
         raise Exception("TOKEN not found in Bot config")
 
     bot.run(bot_token)
