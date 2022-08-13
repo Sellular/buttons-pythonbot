@@ -17,7 +17,7 @@ class StartCog(commands.Cog):
             return
 
         await ctx.send("**Welcome to the Rok & Roll community!** \n" +
-                           "If you're new here, we want to let you in on a couple of secrets that'll help you be the best Roll member that ever was.")
+                           "If you're new here, we want to let you in on a couple of secrets that'll help you be the best Roll member that ever was.\n")
         await ctx.send("**So, what do we talk about here?** \n" +
                            "\n" +
                            ":small_blue_diamond: Our favorite music! Everyone here has their unique tastes: grunge to funk, pop to indie, and everything in between.\n" +
