@@ -45,7 +45,7 @@ async def __sendRoles(bot: discord.Client, updateMode: bool):
             options=notificationArray, custom_id=f"{'update_' if updateMode else ''}notification_select", updateMode=updateMode)
 
         await channel.send("Pick your pronoun roles here! We've got 'em all.", view=pronounChooseView)
-        await channel.send("Choose your genre preferences! Don't see your favs? You can suggest it in <#962242442193670204>.", view=genreChooseView)
+        await channel.send(f"Choose your genre preferences! Don't see your favs? You can suggest it in <#{guildConfig['server_feedback_channel_id']}>.", view=genreChooseView)
         await channel.send('Do you like making music? Are you interested in things like beat loops and DAWs? Then the __producer__ role is for you! Are you interested in speaker setups? Do you own/want a high quality DAC and some high impedance headphones? Then the __audiophile__ role is for you!', view=hobbyChooseView)
         await channel.send('Want to get notified about the latest events? Want to know about the newest releases in the music world? Notification roles are all here!', view=notificationChooseView)
         if not updateMode:
