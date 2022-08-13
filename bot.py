@@ -12,7 +12,7 @@ class MyClient(commands.Bot):
 
     async def on_ready(self):
         SetupUtils.importViews(self)
-        await SetupUtils.importCogs(self)
+        SetupUtils.importCogs(self)
         print("Bot running with:")
         print("Username: ", self.user.name)
         print("User ID: ", self.user.id)

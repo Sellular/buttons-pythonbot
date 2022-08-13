@@ -43,7 +43,7 @@ async def resetViews(bot: commands.Bot):
         print(error)
 
 
-async def importCogs(bot: commands.Bot):
+def importCogs(bot: commands.Bot):
     for filename in os.listdir("./cogs/commands"):
         if filename.endswith(".py"):
             cogName = filename[:-3]
