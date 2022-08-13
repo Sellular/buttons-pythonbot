@@ -52,5 +52,5 @@ async def __sendRoles(bot: discord.Client, updateMode: bool):
             doneButtonView = RoleSubmitButtonView(select_views=[
                 pronounChooseView, genreChooseView, notificationChooseView, hobbyChooseView], custom_id="submit_button")
             await channel.send('Once you have finished selecting your roles, click this button to continue your onboarding', view=doneButtonView)
-        else:
-            await channel.send("Roles channel not found. Contact the bot developer or server administrator.", ephemeral=True)
+    else:
+        await channel.send("Roles channel not found. Contact the bot developer or server administrator.", ephemeral=True)
