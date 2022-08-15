@@ -31,13 +31,6 @@ class VerificationView(View):
                     add_role = discord.utils.get(guild.roles, id=int(role.roleID))
                     await member.add_roles(add_role)
 
-            onboarding_role = discord.utils.get(
-                guild.roles, id=int(guildConfig['onboarding_role_id']))
-            if not onboarding_role:
-                raise Exception("ONBOARDING_ROLE_ID not found in Guild config.")
-            
-            await member.remove_roles(onboarding_role)
-
             member_role = discord.utils.get(guild.roles, id=int(guildConfig['member_role_id']))
             if not member_role:
                 raise Exception("MEMBER_ROLE_ID not found in Guild config.")
