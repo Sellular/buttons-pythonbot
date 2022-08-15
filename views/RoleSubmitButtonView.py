@@ -15,7 +15,7 @@ class RoleSubmitButtonView(View):
     def __init__(self, select_views: list = None, custom_id: str = ""):
         if not select_views:
             select_views = []
-            
+
         self.custom_id = custom_id
         self.select_views = select_views
         super().__init__(timeout=None)
@@ -34,7 +34,8 @@ class RoleSubmitButtonView(View):
                 for select_view in self.select_views:
                     for select in select_view.children:
                         for value in select.values:
-                            role = discord.utils.get(guild.roles, id=int(value))
+                            role = discord.utils.get(
+                                guild.roles, id=int(value))
                             if role:
                                 role_list.append((member.id, role.id))
             OnboardingRoleDAO.insertMany(role_list)
@@ -44,11 +45,19 @@ class RoleSubmitButtonView(View):
             if not guildConfig:
                 raise Exception("Guild config not found.")
 
+            onboardingRole = discord.utils.get(
+                guild.roles, id=int(guildConfig['onboarding_role_id']))
+
+            if not onboardingRole:
+                raise Exception(
+                    "ONBOARDING_ROLE_ID not found in Guild config.")
+
             newMemberRole = discord.utils.get(
                 guild.roles, id=int(guildConfig['new_member_role_id']))
 
             if not newMemberRole:
-                raise Exception("NEW_MEMBER_ROLE_ID not found in Guild config.")
+                raise Exception(
+                    "NEW_MEMBER_ROLE_ID not found in Guild config.")
 
             channel = discord.utils.get(guild.text_channels, id=int(
                 guildConfig['greeting_channel_id']))
@@ -56,6 +65,7 @@ class RoleSubmitButtonView(View):
             if not channel:
                 raise Exception("GREETING_CHANNEL_ID not found in")
 
+            await member.remove_roles(onboardingRole)
             await member.add_roles(newMemberRole)
 
             verification_view = VerificationView()
@@ -68,4 +78,3 @@ class RoleSubmitButtonView(View):
         except (Exception) as error:
             print(error)
             await interaction.followup.send("Error while saving roles. Contact bot developer or server admin", ephemeral=True)
-     
