@@ -27,27 +27,24 @@ def getLeftMemberRolesByMember(memberID: str):
     try:
         dbConnection = DBUtils.getDBConnection()
 
-        dbCursor = dbConnection.execute(
-            __leftMemberRoleSelectByMemberSql, (memberID,))
-        rows = dbCursor.fetchall()
+        with dbConnection:
+            dbCursor = dbConnection.execute(
+                __leftMemberRoleSelectByMemberSql, (memberID,))
+            
+            rows = dbCursor.fetchall()
 
-        if rows:
-            roles = []
-            for row in rows:
-                roles.append(LeftMemberRole(
-                    row['member_id'],
-                    row['role_id'],
-                    row['left_date']
-                ))
+            if rows:
+                roles = []
+                for row in rows:
+                    roles.append(LeftMemberRole(
+                        row['member_id'],
+                        row['role_id'],
+                        row['left_date']
+                    ))
 
-            return roles
+                return roles
     except (Exception) as error:
         raise error
-    finally:
-        if dbCursor:
-            dbCursor.close()
-        if dbConnection:
-            dbConnection.close()
 
 
 def insertMany(role_member_list: list):
