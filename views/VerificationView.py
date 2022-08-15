@@ -15,7 +15,7 @@ class VerificationView(View):
     async def on_callback(self, button: discord.ui.Button, interaction: discord.Interaction):
         guild = interaction.guild
 
-        await interaction.response.defer(ephemeral=True)
+        await interaction.response.defer(ephemeral=True, invisible=False)
         await asyncio.sleep(0.2)  # Thinking...
         try:
             guildConfig = GeneralUtils.getConfig('guild')

@@ -16,7 +16,7 @@ class WelcomeView(View):
         user = interaction.user
         now = datetime.now(timezone.utc)
 
-        await interaction.response.defer(ephemeral=True)
+        await interaction.response.defer(ephemeral=True, invisible=False)
         await asyncio.sleep(0.2)  # Thinking...
         try:
             if abs(now - user.joined_at) < timedelta(seconds=30):

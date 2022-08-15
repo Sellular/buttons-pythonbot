@@ -25,7 +25,7 @@ class RoleSubmitButtonView(View):
         guild = interaction.guild
         member = interaction.user
 
-        await interaction.response.defer(ephemeral=True)
+        await interaction.response.defer(ephemeral=True, invisible=False)
         await asyncio.sleep(0.2)  # Thinking...
 
         try:
