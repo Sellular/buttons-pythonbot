@@ -21,7 +21,7 @@ class RemoveAllRolesButton(Button):
                 removedRoles = []
                 for role in view.options:
                     removeRole = discord.utils.get(
-                        member.guild.roles, id=role['roleID'])
+                        member.roles, id=role['roleID'])
                     if removeRole:
                         await member.remove_roles(removeRole)
                         removedRoles.append(removeRole.name)
