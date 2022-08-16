@@ -24,7 +24,7 @@ class RemoveAllRolesButton(Button):
                         member.guild.roles, id=role['roleID'])
                     if removeRole:
                         await member.remove_roles(removeRole)
-                        removedRoles.append(removeRole)
+                        removedRoles.append(removeRole.name)
                 
                 if removedRoles:
                     rolesStr = ', '.join(removedRoles)
