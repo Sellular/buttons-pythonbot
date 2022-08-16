@@ -15,9 +15,17 @@ class RemoveAllRolesButton(Button):
         await asyncio.sleep(0.2)  # Thinking...
         if view.options:
             member = interaction.user
+
+            removedRoles = []
             for role in view.options:
                 removeRole = discord.utils.get(
                     member.guild.roles, id=role['roleID'])
                 if removeRole:
                     await member.remove_roles(removeRole)
-            await interaction.followup.send("All roles in that dropdown have been removed.", ephemeral=True)
+                    removedRoles.append(removeRole)
+            
+            if removedRoles:
+                rolesStr = ', '.join(removedRoles)
+                await interaction.followup.send(f"Removed role{'s' if len(removedRoles) > 1 else ''}: {rolesStr}", ephemeral=True)
+            else:
+                await interaction.followup.send("You had no roles to remove from the dropdown.")
