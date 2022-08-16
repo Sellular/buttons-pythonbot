@@ -22,7 +22,7 @@ class OnMemberJoin(commands.Cog):
 
             for role in leftMemberRoles:
                 guild_role = discord.utils.get(guild.roles, id=int(role.roleID))
-                member.add_roles(guild_role)
+                await member.add_roles(guild_role)
 
 
 def setup(bot):
