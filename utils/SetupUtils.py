@@ -26,28 +26,19 @@ async def resetViews(bot: commands.Bot):
         if not updateRolesChannelId:
             raise Exception("UPDATE_ROLES_CHANNEL_ID not found in Guild config.")
 
-        channels_to_clear = [
-            addRolesChannelId,
-            updateRolesChannelId
-        ]
-
-        for channel_id_str in channels_to_clear:
-            id_int = int(channel_id_str)
-            channel = await DiscordUtils.clearChannel(id_int, bot)
-            if channel:
-                if channel_id_str == guildConfig['add_roles_channel_id']:
-                    await DiscordUtils.sendAddRoles(bot)
-                elif channel_id_str == guildConfig['update_roles_channel_id']:
-                    await DiscordUtils.sendUpdateRoles(bot)
+        await DiscordUtils.updateAddRoles(bot)
+        await DiscordUtils.updateUpdateRoles(bot)
+        await DiscordUtils.updateWelcome(bot)
+        await DiscordUtils.updateInfo(bot)
     except Exception as error:
         print(error)
 
 
 def importCogs(bot: commands.Bot):
-    for filename in os.listdir("./cogs/commands"):
-        if filename.endswith(".py"):
-            cogName = filename[:-3]
-            bot.load_extension("cogs.commands." + cogName)
+    # for filename in os.listdir("./cogs/commands"):
+    #     if filename.endswith(".py"):
+    #         cogName = filename[:-3]
+    #         bot.load_extension("cogs.commands." + cogName)
 
     for filename in os.listdir("./cogs/events"):
         if filename.endswith(".py"):

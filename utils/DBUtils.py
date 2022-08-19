@@ -15,9 +15,15 @@ __leftMemberRoleTableSql = """
         role_id     TEXT    NOT NULL,
         left_date   TEXT    NOT NULL,
         PRIMARY KEY(member_id, role_id)
-    )
+    );
 """
 
+__channelMessageTableSql = """
+    CREATE TABLE IF NOT EXISTS channel_messages (
+        message_id      INTEGER NOT NULL,
+        message_code    TEXT    NOT NULL    PRIMARY KEY
+    );
+"""
 
 def getDBConnection():
     dbConnection = None
@@ -37,7 +43,7 @@ def checkTables():
 
     try:
         dbCursor = dbConnection.cursor()
-        tableCommands = (__onboardingRoleTableSql, __leftMemberRoleTableSql)
+        tableCommands = (__onboardingRoleTableSql, __leftMemberRoleTableSql, __channelMessageTableSql)
 
         for command in tableCommands:
             dbCursor.execute(command)
