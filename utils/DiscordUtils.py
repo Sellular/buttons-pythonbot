@@ -42,33 +42,28 @@ async def updateInfo(bot: commands.Bot):
             raise Exception("Info channel not found in discord guild.")
 
         infoEmbed1 = discord.Embed(title="Welcome to the Rok & Roll community!")
-        infoEmbed1.add_field(name="\u200b", value="If you're new here, we want to let you in on a couple of secrets that'll help you be the best Roll member that ever was. So, what do we talk about here?\n\n" +
-            "****:small_blue_diamond: Our favorite music!**\n\n" + 
-            "Everyone here has their unique tastes: grunge to funk, pop to indie, and everything in between.\n\n" +
-            f":bnumber_1: <#{guildConfig['main_st_channel_id']}> is your go-to place for general music discussion. This is your place to start!\n" +
-            f":bnumber_2: <#{guildConfig['playlists_channel_id']}> is where you can share your ~~fire mixtape~~ playlists with us! Check out the playlists already there too; you might find something you like.\n" +
-            f":bnumber_3: <#{guildConfig['your_favs_channel_id']}> is for posting a new song you love, or if want to share an old, over-repeated favorite!\n" +
-            f":bnumber_4: <#{guildConfig['music_irl_channel_id']}> is here for you to flex your concert experiences or your crippling vinyl addiction! Real-life photos, videos, and all real-world music go here!\n\n" +
-            "**:small_blue_diamond: Making more music!**\n" +
-            "We're happy to have some producers and of course, music fans, in our community. They'd love to help you master your favorite DAWs!\n\n" +
-            f":bnumber_1: <#{guildConfig['show_off_channel_id']}> is for if you made something you want to share with us!\n" +
-            f":bnumber_2: <#{guildConfig['ask_the_roll_channel_id']}> go here if you want some help putting the finishing touches on your song, or need other support with producing! This is your assistance hub.\n" +
-            f":bnumber_3: <#{guildConfig['collab_channel_id']}> is your go-to when looking to collab with a fellow roll. When you're done, show us in the <#{guildConfig['show_off_channel_id']}> channel!\n" +
-            f":bnumber_4: <#{guildConfig['equipment_channel_id']}> is here when you need equipment and hardware advice, or just want to show us that new MIDI keyboard you got! One stop here will do the trick.\n\n" +
-            "**:small_blue_diamond: Your awesome speaker and headphone setups!**\n" +
-            "From home theaters to the best headset you've ever had, you're sure to find the audiophiles among us.\n\n" +
-            f":bnumber_1: <#{guildConfig['hifi_channel_id']}> conversations can be found here! Finish setting up a new amp? Surround setup? Show us it all!\n" +
-            f":bnumber_2: <#{guildConfig['tech_recommendations_channel_id']}> can be used for some recommendations for new equipment! Wanna promote (#NotASponsor) an awesome new product? This channel has you covered.\n" +
-            f":bnumber_3: <#{guildConfig['speaker_setup_channel_id']}> for all your help untangling the speaker wires. Not sure where to put the subwoofer? Ask here!")
-        
+        infoEmbed1.add_field(name="\u200b", inline=False, value="If you're new here, we want to let you in on a couple of secrets that'll help you be the best Roll member that ever was. So, what do we talk about here?\n")
+        infoEmbed1.add_field(name="**:small_blue_diamond: Our favorite music!**", inline=False, value="Everyone here has their unique tastes: grunge to funk, pop to indie, and everything in between.\n\n" +
+            ":bnumber_1: <#{guildConfig['main_st_channel_id']}> is your go-to place for general music discussion. This is your place to start!\n" +
+            ":bnumber_2: <#{guildConfig['playlists_channel_id']}> is where you can share your ~~fire mixtape~~ playlists with us! Check out the playlists already there too; you might find something you like.\n" +
+            ":bnumber_3: <#{guildConfig['your_favs_channel_id']}> is for posting a new song you love, or if want to share an old, over-repeated favorite!\n" +
+            ":bnumber_4: <#{guildConfig['music_irl_channel_id']}> is here for you to flex your concert experiences or your crippling vinyl addiction! Real-life photos, videos, and all real-world music go here!\n")
+        infoEmbed1.add_field(name="**:small_blue_diamond: Making more music!**", inline=False, value="We're happy to have some producers and of course, music fans, in our community. They'd love to help you master your favorite DAWs!\n\n" +
+            ":bnumber_1: <#{guildConfig['show_off_channel_id']}> is for if you made something you want to share with us!\n" +
+            ":bnumber_2: <#{guildConfig['ask_the_roll_channel_id']}> go here if you want some help putting the finishing touches on your song, or need other support with producing! This is your assistance hub.\n" +
+            ":bnumber_3: <#{guildConfig['collab_channel_id']}> is your go-to when looking to collab with a fellow roll. When you're done, show us in the <#{guildConfig['show_off_channel_id']}> channel!\n" +
+            ":bnumber_4: <#{guildConfig['equipment_channel_id']}> is here when you need equipment and hardware advice, or just want to show us that new MIDI keyboard you got! One stop here will do the trick.\n")
+        infoEmbed1.add_field(name="**:small_blue_diamond: Your awesome speaker and headphone setups!**", inline=False, value="From home theaters to the best headset you've ever had, you're sure to find the audiophiles among us.\n\n" +
+            ":bnumber_1: <#{guildConfig['hifi_channel_id']}> conversations can be found here! Finish setting up a new amp? Surround setup? Show us it all!\n" +
+            ":bnumber_2: <#{guildConfig['tech_recommendations_channel_id']}> can be used for some recommendations for new equipment! Wanna promote (#NotASponsor) an awesome new product? This channel has you covered.\n" +
+            ":bnumber_3: <#{guildConfig['speaker_setup_channel_id']}> for all your help untangling the speaker wires. Not sure where to put the subwoofer? Ask here!")
+
         infoEmbed2 = discord.Embed(title="Cool, but like, are there things to DO?")
-        infoEmbed2.add_field(name="\u200b", value="Of course! We host a variety of fun events for you all to participate in! We've got listening parties, talent shows, and everything in between. You can find any ongoing and upcoming events in the events tab! Probably obvious, we know.\n\n" +
-            "**:small_blue_diamond: Weekly Debate Club!**\n" +
-            "err… I mean, weekly discussion board, for all your hot takes, unpopular opinions, or general infodumps!\n\n" +
-            f"Which you can find in <#{guildConfig['weekly_discussion_channel_id']}>! Come on in, share your thoughts, and enjoy the conversation!\n\n" +
-            "**:small_blue_diamond: Latest new release information and reviews!**\n" +
-            "We got all the latest new release information and reviews for you to kick back and read!\n\n" +
-            f"Check out <#{guildConfig['whats_new_channel_id']}> for all the latest and greatest! After you're done listening (or before, we won't judge) you can head on over to <#{guildConfig['reviews_channel_id']}> to see what other people are saying! Feel free to add to pre-existing threads and keep the conversation going!")
+        infoEmbed2.add_field(name="\u200b", inline=False, value="Of course! We host a variety of fun events for you all to participate in! We've got listening parties, talent shows, and everything in between. You can find any ongoing and upcoming events in the events tab! Probably obvious, we know.\n")
+        infoEmbed2.add_field(name="**:small_blue_diamond: Weekly Debate Club!**", inline=False, value="err… I mean, weekly discussion board, for all your hot takes, unpopular opinions, or general infodumps!\n\n" +
+            "Which you can find in <#{guildConfig['weekly_discussion_channel_id']}>! Come on in, share your thoughts, and enjoy the conversation!\n")
+        infoEmbed2.add_field(name="**:small_blue_diamond: Latest new release information and reviews!**", inline=False, value="We got all the latest new release information and reviews for you to kick back and read!\n\n" +
+            "Check out <#{guildConfig['whats_new_channel_id']}> for all the latest and greatest! After you're done listening (or before, we won't judge) you can head on over to <#{guildConfig['reviews_channel_id']}> to see what other people are saying! Feel free to add to pre-existing threads and keep the conversation going!")
 
         infoMessage1 = await getChannelMessage("infoMessage1", infoChannel, bot)
         infoMessage2 = await getChannelMessage("infoMessage2", infoChannel, bot)
