@@ -42,7 +42,7 @@ async def updateInfo(bot: commands.Bot):
             raise Exception("Info channel not found in discord guild.")
 
         infoEmbed1 = discord.Embed(title="Welcome to the Rok & Roll community!")
-        infoEmbed1.add_field(name="\u200b", inline=False, value="If you're new here, we want to let you in on a couple of secrets that'll help you be the best Roll member that ever was. So, what do we talk about here?\n")
+        infoEmbed1.add_field(name="\u200b", inline=False, value="If you're new here, we want to let you in on a couple of secrets that'll help you be the best Roll member that ever was. So, what do we talk about here?")
         infoEmbed1.add_field(name="**:small_blue_diamond: Our favorite music!**", inline=False, value="Everyone here has their unique tastes: grunge to funk, pop to indie, and everything in between.\n\n" +
             f":bnumber_1: <#{guildConfig['main_st_channel_id']}> is your go-to place for general music discussion. This is your place to start!\n" +
             f":bnumber_2: <#{guildConfig['playlists_channel_id']}> is where you can share your ~~fire mixtape~~ playlists with us! Check out the playlists already there too; you might find something you like.\n" +
