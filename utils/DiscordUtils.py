@@ -218,7 +218,7 @@ async def __updateRoles(bot: commands.Bot, updateMode: bool):
         notificationsMessage = await getChannelMessage(
             f"{prefix}notifications", channel, bot)
 
-        pronounsDialog = "Pick your pronoun roles here! We've got 'em all.!!!!!!!!!!!!"
+        pronounsDialog = "Pick your pronoun roles here! We've got 'em all."
         genresDialog = f"Choose your genre preferences! Don't see your favs? You can suggest it in <#{guildConfig['server_feedback_channel_id']}>."
         hobbiesDialog = 'Do you like making music? Are you interested in things like beat loops and DAWs? Then the __producer__ role is for you! Are you interested in speaker setups? Do you own/want a high quality DAC and some high impedance headphones? Then the __audiophile__ role is for you!'
         notificationsDialog = 'Want to get notified about the latest events? Want to know about the newest releases in the music world? Notification roles are all here!'
