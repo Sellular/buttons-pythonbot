@@ -6,14 +6,6 @@ from utils import GeneralUtils
 from views import RoleChooseView, RoleSubmitButtonView, WelcomeView
 
 
-async def clearChannel(channel_id: int, bot: commands.Bot):
-    channel = bot.get_channel(channel_id)
-    if (channel):
-        await channel.purge(check=lambda message: True, bulk=True)
-        return channel
-    return None
-
-
 async def getChannelMessage(messageCode: str, channel: discord.TextChannel, bot: commands.Bot):
     message = None
     try:
